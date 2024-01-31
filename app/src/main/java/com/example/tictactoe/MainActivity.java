@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         textViewPlayer1 = findViewById(R.id.text_view_p1);
         textViewPlayer2 = findViewById(R.id.text_view_p2);
+        Intent it = getIntent();
+        if(it!=null && it.hasExtra("player1Points") && it.hasExtra("player2Points")){
+            this.player1Points = it.getIntExtra("player1Points", 0);
+            this.player2Points = it.getIntExtra("player2Points", 0);
+            updatePointsText();
+        }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 String buttonID = "button_" + i + j;
