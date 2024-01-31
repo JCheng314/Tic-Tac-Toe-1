@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SecondActivity extends AppCompatActivity {
     Button saveData;
+    Button resumeButton;
     EditText EditTextUserName;
     DatabaseReference databaseUsers;
     int player1Points;
@@ -29,6 +30,17 @@ public class SecondActivity extends AppCompatActivity {
             player2Points = intent.getIntExtra("player2Points", 0);
         }
         saveData = (Button) findViewById(R.id.save_button);
+        resumeButton = (Button) findViewById(R.id.resume_button);
+        resumeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SecondActivity.this, MainActivity.class);
+                System.out.println(player1Points);
+                i.putExtra("player1Points", player1Points);
+                i.putExtra("player2Points", player2Points);
+                startActivity(i);
+            }
+        });
         databaseUsers = FirebaseDatabase.getInstance().getReference("Users");
         EditTextUserName = (EditText) findViewById(R.id.save_username);
         saveData.setOnClickListener(new View.OnClickListener() {
